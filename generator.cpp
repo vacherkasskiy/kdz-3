@@ -11,16 +11,24 @@
 std::vector<std::vector<int>> generateCompleteGraph(int n) {
     std::vector<std::vector<int>> graph(n, std::vector<int>(n, 0));
 
-    // Заполняем ребра случайными весами
+    // Определяем случайное количество ребер
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_int_distribution<> dis(1, 10);
-    for (int i = 0; i < n; ++i) {
-        for (int j = 0; j < n; ++j) {
-            if (i != j) {
-                graph[i][j] = dis(gen);
-            }
-        }
+    std::uniform_int_distribution<> dis(0, n * (n - 1) / 2);
+
+    int numEdges = dis(gen);
+
+    // Заполняем ребра случайными весами
+    std::uniform_int_distribution<> weightDis(1, 10);
+    for (int k = 0; k < numEdges; ++k) {
+        int i = 0, j = 0;
+        do {
+            i = std::uniform_int_distribution<>(0, n - 1)(gen);
+            j = std::uniform_int_distribution<>(0, n - 1)(gen);
+        } while (i == j || graph[i][j] != 0);
+        int weight = weightDis(gen);
+        graph[i][j] = weight;
+        graph[j][i] = weight;
     }
 
     return graph;
@@ -30,19 +38,34 @@ std::vector<std::vector<int>> generateCompleteGraph(int n) {
 std::vector<std::vector<int>> generateConnectedGraph(int n, double density) {
     std::vector<std::vector<int>> graph(n, std::vector<int>(n, 0));
 
+    // Определяем случайное количество ребер
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dis(0, n * (n - 1) / 2);
+
+    int numEdges = dis(gen);
+
     // Создаем связный граф
-    for (int i = 0; i < n - 1; ++i) {
-        graph[i][i + 1] = graph[i + 1][i] = std::rand() % 10 + 1;
+    std::uniform_int_distribution<> weightDis(1, 10);
+    for (int k = 0; k < numEdges; ++k) {
+        int i = 0, j = 0;
+        do {
+            i = std::uniform_int_distribution<>(0, n - 1)(gen);
+            j = std::uniform_int_distribution<>(0, n - 1)(gen);
+        } while (i == j || graph[i][j] != 0);
+        int weight = weightDis(gen);
+        graph[i][j] = weight;
+        graph[j][i] = weight;
     }
 
     // Генерируем оставшиеся ребра с вероятностью density
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_real_distribution<> dis(0.0, 1.0);
+    std::uniform_real_distribution<> probDis(0.0, 1.0);
     for (int i = 0; i < n; ++i) {
-        for (int j = i + 2; j < n; ++j) {
-            if (dis(gen) < density) {
-                graph[i][j] = graph[j][i] = std::rand() % 10 + 1;
+        for (int j = i + 1; j < n; ++j) {
+            if (graph[i][j] == 0 && probDis(gen) < density) {
+                int weight = weightDis(gen);
+                graph[i][j] = weight;
+                graph[j][i] = weight;
             }
         }
     }
@@ -53,10 +76,15 @@ std::vector<std::vector<int>> generateConnectedGraph(int n, double density) {
 // Функция для генерации разреженного графа (дерева) с n вершинами
 std::vector<std::vector<int>> generateSparseGraph(int n) {
     std::vector<std::vector<int>> graph(n, std::vector<int>(n, 0));
+    std::random_device rd;
+    std::mt19937 gen(rd());
 
     // Создаем дерево
     for (int i = 0; i < n - 1; ++i) {
-        graph[i][i + 1] = graph[i + 1][i] = std::rand() % 10 + 1;
+        int weight = std::uniform_int_distribution<>(1, 10)(gen);
+
+        graph[i][i + 1] = weight;
+        graph[i + 1][i] = weight;
     }
 
     return graph;
