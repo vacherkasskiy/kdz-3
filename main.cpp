@@ -35,7 +35,9 @@ int main() {
     double density = 0.4;
     for (int n = start; n <= end; n += step) {
         // генерация связных графов
-        std::vector<std::vector<int>> connectedGraph = generateConnectedGraph(n, density);
+        auto info = generateConnectedGraph(n, density);
+        int numEdges = info.first;
+        auto g = info.second;
 
         // тело
 
@@ -45,7 +47,9 @@ int main() {
 
     // Генерация разреженных графов (деревьев)
     for (int n = start; n <= end; n += step) {
-        std::vector<std::vector<int>> sparseGraph = generateSparseGraph(n);
+        auto info = generateSparseGraph(n);
+        int numEdges = info.first;
+        auto g = info.second;
 
         // тело
     }

@@ -19,7 +19,7 @@ void recordDijkstra(
         const std::vector<std::vector<int>> &g,
         int start,
         int end,
-        std::string name){
+        const std::string &name){
 
     sum = 0;
     int size = g.size();
@@ -35,7 +35,7 @@ void recordDijkstra(
     writeCsv(file, name, size, size * (size - 1) / 2);
 }
 
-void recordFloyd(const std::vector<std::vector<int>> &g, int start, int end, std::string name) {
+void recordFloyd(const std::vector<std::vector<int>> &g, int start, int end, const std::string &name) {
     sum = 0;
 
     for (int i = 0; i < 5; ++i) {
@@ -49,7 +49,7 @@ void recordFloyd(const std::vector<std::vector<int>> &g, int start, int end, std
     // RECORD RESULTS
 }
 
-void recordFord(const std::vector<std::vector<int>> &g, int start, int end, std::string name) {
+void recordFord(const std::vector<std::vector<int>> &g, int start, int end, const std::string &name) {
     sum = 0;
 
     for (int i = 0; i < 5; ++i) {
