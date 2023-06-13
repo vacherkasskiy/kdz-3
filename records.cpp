@@ -24,13 +24,14 @@ void recordDijkstra(
 
     sum = 0;
     int size = g.size();
+    int runsNum = 5;
 
-    for (int i = 0; i < 5; ++i) {
+    for (int i = 0; i < runsNum; ++i) {
         clock_start = std::chrono::high_resolution_clock::now();
         dijkstra(g, start, end);
         elapsed = std::chrono::high_resolution_clock::now() - clock_start;
         nanoseconds = std::chrono::duration_cast<std::chrono::nanoseconds>(elapsed).count();
-        sum += nanoseconds / 5;
+        sum += nanoseconds / runsNum;
     }
 
     writeCsv(file, name, sum, size, numEdges);
@@ -45,13 +46,14 @@ void recordFloyd(
         const std::string &name) {
     sum = 0;
     int size = g.size();
+    int runsNum = 5;
 
-    for (int i = 0; i < 5; ++i) {
+    for (int i = 0; i < runsNum; ++i) {
         clock_start = std::chrono::high_resolution_clock::now();
         floydWarshall(g, start, end);
         elapsed = std::chrono::high_resolution_clock::now() - clock_start;
         nanoseconds = std::chrono::duration_cast<std::chrono::nanoseconds>(elapsed).count();
-        sum += nanoseconds / 5;
+        sum += nanoseconds / runsNum;
     }
 
     writeCsv(file, name, sum, size, numEdges);
@@ -66,13 +68,14 @@ void recordFord(
         const std::string &name) {
     sum = 0;
     int size = g.size();
+    int runsNum = 5;
 
-    for (int i = 0; i < 5; ++i) {
+    for (int i = 0; i < runsNum; ++i) {
         clock_start = std::chrono::high_resolution_clock::now();
         fordBellman(g, start, end);
         elapsed = std::chrono::high_resolution_clock::now() - clock_start;
         nanoseconds = std::chrono::duration_cast<std::chrono::nanoseconds>(elapsed).count();
-        sum += nanoseconds / 5;
+        sum += nanoseconds / runsNum;
     }
 
     writeCsv(file, name, sum, size, numEdges);

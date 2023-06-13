@@ -40,7 +40,7 @@ std::pair<int, std::vector<std::vector<int>>> generateConnectedGraph(int n, doub
     // Создаем связный граф
     std::uniform_int_distribution<> weightDis(1, 10);
     for (int k = 0; k < numEdges; ++k) {
-        int i = 0, j = 0;
+        int i, j;
         do {
             i = std::uniform_int_distribution<>(0, n - 1)(gen);
             j = std::uniform_int_distribution<>(0, n - 1)(gen);

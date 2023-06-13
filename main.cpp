@@ -13,9 +13,10 @@ int getRandomNumber(int min, int max) {
 
 int main() {
     std::ofstream file("data.csv", std::ios_base::app);
+    file << "name;nanoseconds;edges amount;ribs amount\n";
 
     int start = 10;
-    int end = 300;
+    int end = 1010;
     int step = 50;
 
     // Полные графы
@@ -23,7 +24,7 @@ int main() {
 
         // генерация
         std::vector<std::vector<int>> completeGraph = generateCompleteGraph(n);
-        int a = getRandomNumber(0, n), b = getRandomNumber(0, n);
+        int a = getRandomNumber(0, n - 1), b = getRandomNumber(0, n - 1);
         int numEdges = (n * (n - 1)) / 2;
 
         // алгоритмы
@@ -33,17 +34,18 @@ int main() {
     }
 
     // Связные графы
-    double density = 0.4;
+    double density = 0.45;
     for (int n = start; n <= end; n += step) {
         // генерация связных графов
         auto info = generateConnectedGraph(n, density);
         int numEdges = info.first;
         auto g = info.second;
+        int a = getRandomNumber(0, n - 1), b = getRandomNumber(0, n - 1);
 
         // тело
-
-        // Увеличиваем коэффициент плотности для следующего графа
-        density += 0.1;
+        recordDijkstra(file, g, a, b, numEdges, "complete graph, dijkstra");
+        recordFloyd(file, g, a, b, numEdges, "complete graph, floyd");
+        recordFord(file, g, a, b, numEdges, "complete graph, ford");
     }
 
     // Генерация разреженных графов (деревьев)
@@ -51,8 +53,12 @@ int main() {
         auto info = generateSparseGraph(n);
         int numEdges = info.first;
         auto g = info.second;
+        int a = getRandomNumber(0, n - 1), b = getRandomNumber(0, n - 1);
 
         // тело
+        recordDijkstra(file, g, a, b, numEdges, "complete graph, dijkstra");
+        recordFloyd(file, g, a, b, numEdges, "complete graph, floyd");
+        recordFord(file, g, a, b, numEdges, "complete graph, ford");
     }
 
     file.close();
