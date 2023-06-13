@@ -24,11 +24,12 @@ int main() {
         // генерация
         std::vector<std::vector<int>> completeGraph = generateCompleteGraph(n);
         int a = getRandomNumber(0, n), b = getRandomNumber(0, n);
+        int numEdges = (n * (n - 1)) / 2;
 
         // алгоритмы
-        recordDijkstra(file, completeGraph, a, b, "complete graph, dijkstra");
-        recordFloyd(completeGraph, a, b, "complete graph, floyd");
-        recordFord(completeGraph, a, b, "complete graph, ford");
+        recordDijkstra(file, completeGraph, a, b, numEdges, "complete graph, dijkstra");
+        recordFloyd(file, completeGraph, a, b, numEdges, "complete graph, floyd");
+        recordFord(file, completeGraph, a, b, numEdges, "complete graph, ford");
     }
 
     // Связные графы

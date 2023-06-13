@@ -19,6 +19,7 @@ void recordDijkstra(
         const std::vector<std::vector<int>> &g,
         int start,
         int end,
+        int numEdges,
         const std::string &name){
 
     sum = 0;
@@ -32,11 +33,18 @@ void recordDijkstra(
         sum += nanoseconds / 5;
     }
 
-    writeCsv(file, name, size, size * (size - 1) / 2);
+    writeCsv(file, name, sum, size, numEdges);
 }
 
-void recordFloyd(const std::vector<std::vector<int>> &g, int start, int end, const std::string &name) {
+void recordFloyd(
+        std::ofstream &file,
+        const std::vector<std::vector<int>> &g,
+        int start,
+        int end,
+        int numEdges,
+        const std::string &name) {
     sum = 0;
+    int size = g.size();
 
     for (int i = 0; i < 5; ++i) {
         clock_start = std::chrono::high_resolution_clock::now();
@@ -46,11 +54,18 @@ void recordFloyd(const std::vector<std::vector<int>> &g, int start, int end, con
         sum += nanoseconds / 5;
     }
 
-    // RECORD RESULTS
+    writeCsv(file, name, sum, size, numEdges);
 }
 
-void recordFord(const std::vector<std::vector<int>> &g, int start, int end, const std::string &name) {
+void recordFord(
+        std::ofstream &file,
+        const std::vector<std::vector<int>> &g,
+        int start,
+        int end,
+        int numEdges,
+        const std::string &name) {
     sum = 0;
+    int size = g.size();
 
     for (int i = 0; i < 5; ++i) {
         clock_start = std::chrono::high_resolution_clock::now();
@@ -60,5 +75,5 @@ void recordFord(const std::vector<std::vector<int>> &g, int start, int end, cons
         sum += nanoseconds / 5;
     }
 
-    // RECORD RESULTS
+    writeCsv(file, name, sum, size, numEdges);
 }

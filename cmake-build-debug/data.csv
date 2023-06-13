@@ -1,6 +1,19 @@
-complete graph, dijkstra;10;45
-complete graph, dijkstra;60;1770
-complete graph, dijkstra;110;5995
-complete graph, dijkstra;160;12720
-complete graph, dijkstra;210;21945
-complete graph, dijkstra;260;33670
+
+complete graph, dijkstra;11880;10;45
+complete graph, floyd;23660;10;45
+complete graph, ford;10100;10;45
+complete graph, dijkstra;102440;60;1770
+complete graph, floyd;2701280;60;1770
+complete graph, ford;1814540;60;1770
+complete graph, dijkstra;250620;110;5995
+complete graph, floyd;15527180;110;5995
+complete graph, ford;11762600;110;5995
+complete graph, dijkstra;482580;160;12720
+complete graph, floyd;49532280;160;12720
+complete graph, ford;32720800;160;12720
+complete graph, dijkstra;725460;210;21945
+complete graph, floyd;112152120;210;21945
+complete graph, ford;75956220;210;21945
+complete graph, dijkstra;869140;260;33670
+complete graph, floyd;199796040;260;33670
+complete graph, ford;147261680;260;33670

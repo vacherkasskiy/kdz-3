@@ -5,6 +5,6 @@
 #include <fstream>
 #include "writer.h"
 
-void writeCsv(std::ofstream &file, const std::string &name, int edgesAmount, int ribsAmount) {
-    file << name << ";" << edgesAmount << ";" << ribsAmount << "\n";
+void writeCsv(std::ofstream &file, const std::string &name, long long sum, int edgesAmount, int ribsAmount) {
+    file << name << ";" << sum << ";" << edgesAmount << ";" << ribsAmount << "\n";
 }
