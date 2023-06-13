@@ -67,6 +67,12 @@ build CMakeFiles/kdz_3.dir/algorithms.cpp.obj: CXX_COMPILER__kdz_3_Debug C$:/Use
   OBJECT_DIR = CMakeFiles\kdz_3.dir
   OBJECT_FILE_DIR = CMakeFiles\kdz_3.dir
 
+build CMakeFiles/kdz_3.dir/records.cpp.obj: CXX_COMPILER__kdz_3_Debug C$:/Users/cherk/CLionProjects/kdz-3/records.cpp || cmake_object_order_depends_target_kdz_3
+  DEP_FILE = CMakeFiles\kdz_3.dir\records.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\kdz_3.dir
+  OBJECT_FILE_DIR = CMakeFiles\kdz_3.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target kdz_3
@@ -75,7 +81,7 @@ build CMakeFiles/kdz_3.dir/algorithms.cpp.obj: CXX_COMPILER__kdz_3_Debug C$:/Use
 #############################################
 # Link the executable kdz_3.exe
 
-build kdz_3.exe: CXX_EXECUTABLE_LINKER__kdz_3_Debug CMakeFiles/kdz_3.dir/main.cpp.obj CMakeFiles/kdz_3.dir/generator.cpp.obj CMakeFiles/kdz_3.dir/algorithms.cpp.obj
+build kdz_3.exe: CXX_EXECUTABLE_LINKER__kdz_3_Debug CMakeFiles/kdz_3.dir/main.cpp.obj CMakeFiles/kdz_3.dir/generator.cpp.obj CMakeFiles/kdz_3.dir/algorithms.cpp.obj CMakeFiles/kdz_3.dir/records.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\kdz_3.dir

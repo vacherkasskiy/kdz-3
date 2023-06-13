@@ -1,13 +1,7 @@
 #include <vector>
 #include <random>
-#include <chrono>
 #include "generator.h"
-#include "algorithms.h"
-
-auto clock_start = std::chrono::high_resolution_clock::now();
-auto elapsed = std::chrono::high_resolution_clock::now() - clock_start;
-long long nanoseconds;
-long long sum = 0;
+#include "records.h"
 
 int getRandomNumber(int min, int max) {
     std::random_device rd;
@@ -23,38 +17,15 @@ int main() {
 
     // Полные графы
     for (int n = start; n <= end; n += step) {
-        // генерация полных графов
+
+        // генерация
         std::vector<std::vector<int>> completeGraph = generateCompleteGraph(n);
+        int a = getRandomNumber(0, n), b = getRandomNumber(0, n);
 
-        for (int i = 0; i < 5; ++i) {
-            // основной код
-            int a = getRandomNumber(0, n), b = getRandomNumber(0, n);
-
-            sum = 0;
-            clock_start = std::chrono::high_resolution_clock::now();
-            dijkstra(completeGraph, a, b);
-            elapsed = std::chrono::high_resolution_clock::now() - clock_start;
-            nanoseconds = std::chrono::duration_cast<std::chrono::nanoseconds>(elapsed).count();
-            sum += nanoseconds / 5;
-            // записать результаты
-
-            sum = 0;
-            clock_start = std::chrono::high_resolution_clock::now();
-            floydWarshall(completeGraph, a, b);
-            elapsed = std::chrono::high_resolution_clock::now() - clock_start;
-            nanoseconds = std::chrono::duration_cast<std::chrono::nanoseconds>(elapsed).count();
-            sum += nanoseconds / 5;
-            // записать результаты
-
-            sum = 0;
-            clock_start = std::chrono::high_resolution_clock::now();
-            fordBellman(completeGraph, a, b);
-            elapsed = std::chrono::high_resolution_clock::now() - clock_start;
-            nanoseconds = std::chrono::duration_cast<std::chrono::nanoseconds>(elapsed).count();
-            sum += nanoseconds / 5;
-            // записать результаты
-        }
-
+        // алгоритмы
+        recordDijkstra(completeGraph, a, b, "complete graph, dijkstra");
+        recordFloyd(completeGraph, a, b, "complete graph, floyd");
+        recordFord(completeGraph, a, b, "complete graph, ford");
     }
 
     // Связные графы
