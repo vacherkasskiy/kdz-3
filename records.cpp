@@ -7,14 +7,22 @@
 #include <chrono>
 #include "records.h"
 #include "algorithms.h"
+#include "writer.h"
 
 auto clock_start = std::chrono::high_resolution_clock::now();
 auto elapsed = std::chrono::high_resolution_clock::now() - clock_start;
 long long nanoseconds;
 long long sum = 0;
 
-void recordDijkstra(const std::vector<std::vector<int>> &g, int start, int end, std::string name) {
+void recordDijkstra(
+        std::ofstream &file,
+        const std::vector<std::vector<int>> &g,
+        int start,
+        int end,
+        std::string name){
+
     sum = 0;
+    int size = g.size();
 
     for (int i = 0; i < 5; ++i) {
         clock_start = std::chrono::high_resolution_clock::now();
@@ -24,7 +32,7 @@ void recordDijkstra(const std::vector<std::vector<int>> &g, int start, int end, 
         sum += nanoseconds / 5;
     }
 
-    // RECORD RESULTS
+    writeCsv(file, name, size, size * (size - 1) / 2);
 }
 
 void recordFloyd(const std::vector<std::vector<int>> &g, int start, int end, std::string name) {

@@ -12,10 +12,10 @@ int getRandomNumber(int min, int max) {
 }
 
 int main() {
-    //std::ofstream file("data.csv", std::ios_base::app);
+    std::ofstream file("data.csv", std::ios_base::app);
 
     int start = 10;
-    int end = 1010;
+    int end = 300;
     int step = 50;
 
     // Полные графы
@@ -26,7 +26,7 @@ int main() {
         int a = getRandomNumber(0, n), b = getRandomNumber(0, n);
 
         // алгоритмы
-        recordDijkstra(completeGraph, a, b, "complete graph, dijkstra");
+        recordDijkstra(file, completeGraph, a, b, "complete graph, dijkstra");
         recordFloyd(completeGraph, a, b, "complete graph, floyd");
         recordFord(completeGraph, a, b, "complete graph, ford");
     }
@@ -50,7 +50,7 @@ int main() {
         // тело
     }
 
-    //file.close();
+    file.close();
 
     return 0;
 }
