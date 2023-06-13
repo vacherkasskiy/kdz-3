@@ -1,5 +1,6 @@
 #include <vector>
 #include <random>
+#include <fstream>
 #include "generator.h"
 #include "records.h"
 
@@ -11,6 +12,8 @@ int getRandomNumber(int min, int max) {
 }
 
 int main() {
+    //std::ofstream file("data.csv", std::ios_base::app);
+
     int start = 10;
     int end = 1010;
     int step = 50;
@@ -46,6 +49,8 @@ int main() {
 
         // тело
     }
+
+    //file.close();
 
     return 0;
 }

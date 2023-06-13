@@ -11,24 +11,16 @@
 std::vector<std::vector<int>> generateCompleteGraph(int n) {
     std::vector<std::vector<int>> graph(n, std::vector<int>(n, 0));
 
-    // Определяем случайное количество ребер
+    // Заполняем ребра случайными весами
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_int_distribution<> dis(0, n * (n - 1) / 2);
-
-    int numEdges = dis(gen);
-
-    // Заполняем ребра случайными весами
     std::uniform_int_distribution<> weightDis(1, 10);
-    for (int k = 0; k < numEdges; ++k) {
-        int i = 0, j = 0;
-        do {
-            i = std::uniform_int_distribution<>(0, n - 1)(gen);
-            j = std::uniform_int_distribution<>(0, n - 1)(gen);
-        } while (i == j || graph[i][j] != 0);
-        int weight = weightDis(gen);
-        graph[i][j] = weight;
-        graph[j][i] = weight;
+    for (int i = 0; i < n; ++i) {
+        for (int j = i + 1; j < n; ++j) {
+            int weight = weightDis(gen);
+            graph[i][j] = weight;
+            graph[j][i] = weight;
+        }
     }
 
     return graph;
