@@ -43,9 +43,9 @@ int main() {
         int a = getRandomNumber(0, n - 1), b = getRandomNumber(0, n - 1);
 
         // тело
-        recordDijkstra(file, g, a, b, numEdges, "complete graph, dijkstra");
-        recordFloyd(file, g, a, b, numEdges, "complete graph, floyd");
-        recordFord(file, g, a, b, numEdges, "complete graph, ford");
+        recordDijkstra(file, g, a, b, numEdges, "connected graph, dijkstra");
+        recordFloyd(file, g, a, b, numEdges, "connected graph, floyd");
+        recordFord(file, g, a, b, numEdges, "connected graph, ford");
     }
 
     // Генерация разреженных графов (деревьев)
@@ -56,9 +56,9 @@ int main() {
         int a = getRandomNumber(0, n - 1), b = getRandomNumber(0, n - 1);
 
         // тело
-        recordDijkstra(file, g, a, b, numEdges, "complete graph, dijkstra");
-        recordFloyd(file, g, a, b, numEdges, "complete graph, floyd");
-        recordFord(file, g, a, b, numEdges, "complete graph, ford");
+        recordDijkstra(file, g, a, b, numEdges, "sparse graph, dijkstra");
+        recordFloyd(file, g, a, b, numEdges, "sparse graph, floyd");
+        recordFord(file, g, a, b, numEdges, "sparse graph, ford");
     }
 
     file.close();
